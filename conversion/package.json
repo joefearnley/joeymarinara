@@ -1,0 +1,23 @@
+{
+  "name": "joey-marinara-html-conversion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joefearnley/joeymarinara.git"
+  },
+  "author": "Joe Fearnley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joefearnley/joeymarinara/issues"
+  },
+  "homepage": "https://github.com/joefearnley/joeymarinara#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.9",
+    "turndown": "^7.0.0"
+  }
+}
