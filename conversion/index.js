@@ -6,14 +6,14 @@ const postsDir = '../posts/html/';
 const outputDir = '../posts/markdown/';
 let $ = null;
 
-fs.readdir(postsDir, (err, filesnames) => {
+fs.readdir(postsDir, (err, filenames) => {
     if (err) {
-        console.log('Error reading file directory: ' + filesnames);
+        console.log('Error reading file directory: ' + filenames);
         console.log(err);
         return;
     }
 
-    filesnames.forEach(filename => {
+    filenames.forEach(filename => {
         fs.readFile(postsDir + filename, 'utf-8', function(err, content) {
             if (err) {
                 console.log('Error reading file:' + filename);
@@ -37,7 +37,7 @@ fs.readdir(postsDir, (err, filesnames) => {
             let markdown = turndownService.turndown(html);
 
             // write file with .md extenstion
-            let markDownFilename = filename.replace('html', 'md');``
+            let markDownFilename = filename.replace('html', 'md');
             fs.writeFileSync(outputDir + markDownFilename, markdown);
         });
     });
