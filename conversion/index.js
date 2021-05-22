@@ -2,6 +2,11 @@ const fs = require('fs');
 const cheerio = require('cheerio');
 const TurndownService = require('turndown');
 const date = require('date-and-time');
+const ordinal = require('date-and-time/plugin/ordinal');
+const meridiem = require('date-and-time/plugin/meridiem');
+
+date.plugin(ordinal);
+date.plugin(meridiem);
 
 const postsDir = '../posts/html/';
 const outputDir = '../posts/markdown/';
@@ -30,15 +35,19 @@ fs.readdir(postsDir, (err, filenames) => {
 
             // get date to reference file name
             let $timestamp = $('#timestamp').html();
-            console.log($timestamp);
+            //console.log($timestamp);
 
-            const pattern = date.compile('MMM DDD, YYYY H:ma');
-            let formattedDate = date.parse($timestamp, pattern);
+            const pattern = date.compile('MMMM DDD, YYYY h:mma');
+            let formattedDate = date.parse($timestamp, 'MMMM DDD, YYYY h:mma');
+
+            //console.log(date.parse('November 22nd, 2010 12:57pm', pattern));
+
+            console.log(date.format(new Date(), pattern));
 
             // const pattern = date.compile('YYYY-MM-DD h:m:s A');
             // let formattedDate = date.parse('Mar 22 2019 2:54:21 PM', pattern);
 
-            console.log(formattedDate);
+            //console.log(formattedDate);
 
             // remove blank lines to clean things up a bit.
             // and remove extra space on each line
@@ -54,7 +63,7 @@ fs.readdir(postsDir, (err, filenames) => {
             // write file with .md extenstion
             let markDownFilename = filename.replace('html', 'md');
 
-            fs.writeFileSync(`${outputDir}  ${formattedDate}_${markDownFilename}`, markdown);
+            fs.writeFileSync(`${outputDir}${formattedDate}_${markDownFilename}`, markdown);
             console.log('File writtern.');
         });
     });
