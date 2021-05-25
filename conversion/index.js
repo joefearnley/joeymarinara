@@ -1,16 +1,22 @@
 const fs = require('fs');
 const cheerio = require('cheerio');
 const TurndownService = require('turndown');
-const date = require('date-and-time');
+const dateTime = require('date-and-time');
 const ordinal = require('date-and-time/plugin/ordinal');
 const meridiem = require('date-and-time/plugin/meridiem');
 
-date.plugin(ordinal);
-date.plugin(meridiem);
+dateTime.plugin(ordinal);
+dateTime.plugin(meridiem);
 
 const postsDir = '../posts/html/';
 const outputDir = '../posts/markdown/';
 let $ = null;
+
+const formatDate = date => {
+    let parts = date.split(' ');
+
+    console.log(parts);
+};
 
 fs.readdir(postsDir, (err, filenames) => {
     if (err) {
@@ -34,20 +40,27 @@ fs.readdir(postsDir, (err, filenames) => {
             let html = $('body').html();
 
             // get date to reference file name
-            let $timestamp = $('#timestamp').html();
-            //console.log($timestamp);
+            let $timestamp = $('#timestamp').html().trim();
+            // console.log(formatDate($timestamp));
 
-            const pattern = date.compile('MMMM DDD, YYYY h:mma');
-            let formattedDate = date.parse($timestamp, 'MMMM DDD, YYYY h:mma');
+            //const pattern = dateTime.compile('MMMM DDD, YYYY h:mma');
+            //const pattern = dateTime.compile('YYYY-MM-DD');
+            let formattedDate = dateTime.parse($timestamp, 'MMMM DDD, YYYY h:mma');
 
-            //console.log(date.parse('November 22nd, 2010 12:57pm', pattern));
+            //console.log(dateTime.parse('November 22nd, 2010 12:57pm', pattern));
 
-            console.log(date.format(new Date(), pattern));
+            const pattern = dateTime.compile('MMMM DDD, YYYY h:mma');
+            console.log(dateTime.parse('November 22nd, 2010 12:57pm', pattern));
 
-            // const pattern = date.compile('YYYY-MM-DD h:m:s A');
+            // console.log(dateTime.parse('2015/01/02 23:14:05', 'YYYY/MM/DD HH:mm:ss'));
+            // console.log(dateTime.parse('02-01-2015', 'DD-MM-YYYY'));
+
+            // const pattern = dateTime.compile('YYYY-MM-DD h:m:s A');
             // let formattedDate = date.parse('Mar 22 2019 2:54:21 PM', pattern);
 
-            //console.log(formattedDate);
+            // console.log(formattedDate);
+            console.log('');
+
 
             // remove blank lines to clean things up a bit.
             // and remove extra space on each line

@@ -12,7 +12,7 @@ export default async (req, res) => {
     path: 'posts/markdown'
   });
 
-  console.log(contents);
+  res.status(200).json(contents)
 
   // grab all of the posts
   // order by name
