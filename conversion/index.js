@@ -1,12 +1,6 @@
 const fs = require('fs');
 const cheerio = require('cheerio');
 const TurndownService = require('turndown');
-const dateTime = require('date-and-time');
-const ordinal = require('date-and-time/plugin/ordinal');
-const meridiem = require('date-and-time/plugin/meridiem');
-
-dateTime.plugin(ordinal);
-dateTime.plugin(meridiem);
 
 const postsDir = '../posts/html/';
 const outputDir = '../posts/markdown/';
@@ -15,7 +9,16 @@ let $ = null;
 const formatDate = date => {
     let parts = date.split(' ');
 
-    console.log(parts);
+    let months = ['','January','February','March','April','May','June','July','August','September','October','November','December'];
+    let monthNumber = months.indexOf(parts[0]);
+
+    let dayNumber = parts[1].slice(0, -3);
+
+    let year = parts[2];
+    let month = (monthNumber < 10) ? `0${monthNumber}` : monthNumber.toString();
+    let day = (dayNumber < 10) ? `0${dayNumber}` : dayNumber.toString();
+
+    return `${year}-${month}-${day}`;
 };
 
 fs.readdir(postsDir, (err, filenames) => {
@@ -41,26 +44,7 @@ fs.readdir(postsDir, (err, filenames) => {
 
             // get date to reference file name
             let $timestamp = $('#timestamp').html().trim();
-            // console.log(formatDate($timestamp));
-
-            //const pattern = dateTime.compile('MMMM DDD, YYYY h:mma');
-            //const pattern = dateTime.compile('YYYY-MM-DD');
-            let formattedDate = dateTime.parse($timestamp, 'MMMM DDD, YYYY h:mma');
-
-            //console.log(dateTime.parse('November 22nd, 2010 12:57pm', pattern));
-
-            const pattern = dateTime.compile('MMMM DDD, YYYY h:mma');
-            console.log(dateTime.parse('November 22nd, 2010 12:57pm', pattern));
-
-            // console.log(dateTime.parse('2015/01/02 23:14:05', 'YYYY/MM/DD HH:mm:ss'));
-            // console.log(dateTime.parse('02-01-2015', 'DD-MM-YYYY'));
-
-            // const pattern = dateTime.compile('YYYY-MM-DD h:m:s A');
-            // let formattedDate = date.parse('Mar 22 2019 2:54:21 PM', pattern);
-
-            // console.log(formattedDate);
-            console.log('');
-
+            let formattedDate = formatDate($timestamp);
 
             // remove blank lines to clean things up a bit.
             // and remove extra space on each line
@@ -77,7 +61,7 @@ fs.readdir(postsDir, (err, filenames) => {
             let markDownFilename = filename.replace('html', 'md');
 
             fs.writeFileSync(`${outputDir}${formattedDate}_${markDownFilename}`, markdown);
-            console.log('File writtern.');
+            console.log(`File writtern - ${markDownFilename}`);
         });
     });
 });
