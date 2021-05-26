@@ -31,9 +31,9 @@ fs.readdir(postsDir, (err, filenames) => {
     console.log('Starting to read files...');
 
     filenames.forEach(filename => {
-        fs.readFile(postsDir + filename, 'utf-8', function(err, content) {
+        fs.readFile(postsDir + filename, 'utf-8', (err, content) => {
             if (err) {
-                console.log('Error reading file:' + filename);
+                console.log(`Error reading file: ${filename}`);
                 console.log(err);
                 return;
             }
@@ -43,8 +43,8 @@ fs.readdir(postsDir, (err, filenames) => {
             let html = $('body').html();
 
             // get date to reference file name
-            let $timestamp = $('#timestamp').html().trim();
-            let formattedDate = formatDate($timestamp);
+            let timestamp = $('#timestamp').html().trim();
+            let formattedDate = formatDate(timestamp);
 
             // remove blank lines to clean things up a bit.
             // and remove extra space on each line
