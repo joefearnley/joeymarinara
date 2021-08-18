@@ -1,5 +1,9 @@
-Chicago Style Pizza‎
-====================
+---
+extends: _layouts.post
+section: content
+title: Chicago Style Pizza‎
+date: 2010-04-05
+---
 
 It’s weird. Sometimes you hear of things that are almost mythical but in reality it turns out it’s a sham. That was my experience with Chicago Style Pizza in Kalamazoo. Fool me once, they may get a chance to fool me again.
 
@@ -14,5 +18,3 @@ If there is one thing that we (Dave, Ashley, Rachel, and I) could agree on was t
 Final Rating: 3 slices
 
 ![](https://64.media.tumblr.com/f64279f998279c34579943688f99edf6/a4930ded6a115fbd-bb/s540x810/559071344d1e5bf25e261aafb66b4c3cbd4f9d7d.jpg)
-
-April 5th, 2010 1:20pm

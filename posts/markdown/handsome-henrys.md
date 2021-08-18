@@ -1,5 +1,9 @@
-Handsome Henry's
-================
+---
+extends: _layouts.post
+section: content
+title: Handsome Henry's
+date: 2010-04-24
+---
 
 Lunch with my dad has become some sort of ritual whenever I am in Muskegon. Between that and golf, there does exist things we actually have in common. This particular Saturday I was freed up and we decided to hit up the newly-opened Handsome Henry’s. Located in the building that used to be Finley’s on Henry St., it’s a bit more of an upscale joint with a nice bar that is pretty much the first thing you see as you enter. Big Joe and myself decide to belly up.
 
@@ -12,5 +16,3 @@ I do have to say that all in all it was very good. Even better along with a cold
 Final Rating: 3 slices
 
 ![](https://64.media.tumblr.com/f64279f998279c34579943688f99edf6/4c878c93695abfe1-ae/s540x810/f9985a984e748cfdc52d3927b20015317de304b1.jpg)
-
-April 24th, 2010 8:01pm
