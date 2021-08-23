@@ -122,10 +122,14 @@ fs.readdir(postsDir, (err, filenames) => {
             // write file with title as name and with .md extenstion (along with 
             // removing ampersand and single quotes)
             let markDownFilename = title.split(' ')
-                .map(word => word.toLowerCase())
+                .map(word => {
+                    return word.toLowerCase()
+                        .replace("'", '')
+                        .replace("’", '')
+                        .replace('-&amp;-', '-')
+                        .replace(".", '')
+                })
                 .join('-')
-                .replace("'", '')
-                .replace('-&amp;-', '-')
                 + '.md';
 
             // add the date to the front of the file name (this is how jigsaw orders them)
