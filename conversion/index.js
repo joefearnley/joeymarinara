@@ -59,12 +59,46 @@ fs.readdir(postsDir, (err, filenames) => {
             // don't need the header in the body anymore, so remove it
             $('h1').remove();
 
-            // remove blank lines to clean things up a bit.
-            // and remove extra space on each line
-            html = $body.html().replace(/(^[ \t]*\n)/gm, "")
+            // clear html by removing all of the white space and store all of the
+            // lines in an array - this makes it easier to work with going forward
+            let bodyArray = $body.html().replace(/(^[ \t]*\n)/gm, "")
                 .split("\n")
-                .map(line => line.trim())
-                .join('');
+                .map(line => line.trim());
+
+            // replace the pizza image with the one in the assets folder
+            // first we need to find the line with the rating on it
+            let rating = 0;
+            bodyArray.forEach(line => {
+                if (line.includes('Final Rating')) {
+                    // found the line - now parse it and find the number
+                    line.split('').forEach(c => {
+                        if (!isNaN(parseInt(c))) {
+                            // found the number - set the rating.
+                            rating = parseInt(c);
+                        }
+                    });
+                }
+            });
+
+            // if there is no rating, this not not an actual published post, 
+            // so ignore and move on the the next one
+            if (rating === 0) {
+                return;
+            }
+
+            // next remove the last two lines of the file, this *almost* always contains the 
+            // the image reference to either tumblr's CDN or in the assets folder of the downloaded files
+            // plus an extra new line
+            bodyArray = bodyArray.slice(0, -2);
+
+            let ratingFilename = `/assets/img/pizza${rating}_sm.jpg`;
+
+            // add the last line with is the pizza image
+            bodyArray.push(`<p><img src="${ratingFilename}" alt="Rating: ${rating} Slices" /></p>`);
+
+
+            // finally, build the html string
+            let html = bodyArray.join('');
 
             // write YAML header
             const header = `---
@@ -72,6 +106,7 @@ fs.readdir(postsDir, (err, filenames) => {
                 section: content
                 title: ${title}
                 date: ${formattedDate}
+                rating: ${rating}
                 ---
             `.split("\n")
             .map(line => line.trim())
@@ -84,12 +119,17 @@ fs.readdir(postsDir, (err, filenames) => {
             markdown = markdown.replace(formattedDate, '')
             markdown = header + "\n" + markdown;
 
-            // write file with title as name and with .md extenstion
+            // write file with title as name and with .md extenstion (along with 
+            // removing ampersand and single quotes)
             let markDownFilename = title.split(' ')
                 .map(word => word.toLowerCase())
                 .join('-')
                 .replace("'", '')
+                .replace('-&amp;-', '-')
                 + '.md';
+
+            // add the date to the front of the file name (this is how jigsaw orders them)
+            markDownFilename = `${formattedDate}-${markDownFilename}`;
 
             fs.writeFileSync(`${outputDir}${markDownFilename}`, markdown);
             console.log(`File writtern - ${markDownFilename}`);
