@@ -2,7 +2,7 @@
 extends: _layouts.post
 section: content
 title: Getting Started
-date: 2018-12-25
+date: 2008-12-25
 description: Getting started with the Jigsaw blog starter template
 featured: true
 categories: [configuration]

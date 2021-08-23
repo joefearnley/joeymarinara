@@ -2,7 +2,7 @@
 extends: _layouts.post
 section: content
 title: Custom 404 Pages
-date: 2018-12-23
+date: 2008-12-23
 description: Add a custom 404 page is easy with Jigsaw
 categories: [configuration, feature]
 ---
