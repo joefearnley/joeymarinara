@@ -1,6 +1,12 @@
 @extends('_layouts.master')
 
 @section('body')
+    <div class="w-full mb-6 text-center">
+        <div>
+            <img src="/assets/img/joey_marinara.png" alt="Joey Marinara">
+        </div>
+    </div>
+
     @foreach ($posts->take(6) as $post)
         <div class="w-full mb-6">
             @if ($post->cover_image)
