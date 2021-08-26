@@ -16,6 +16,16 @@ module.exports = {
     },
   },
   theme: {
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      red: {
+        DEFAULT: '#a40013'
+      },
+      brown: {
+        DEFAULT: '#b9a979'
+      }
+    },
     extend: {
       fontFamily: {
         sans: [
