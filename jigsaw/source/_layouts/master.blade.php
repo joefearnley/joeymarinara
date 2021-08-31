@@ -32,7 +32,7 @@
                     <a href="/" title="{{ $page->siteName }} home" class="inline-flex items-center">
                         <img class="h-8 md:h-10 mr-3" src="/assets/img/joey_marinara.png" alt="{{ $page->siteName }} logo" />
 
-                        <h1 class="text-lg md:text-2xl text-blue-800 font-semibold hover:text-blue-600 my-0">{{ $page->siteName }}</h1>
+                        <h1 class="ml-2 text-lg md:text-2xl text-red font-semibold my-0">{{ $page->siteName }}</h1>
                     </a>
                 </div>
 

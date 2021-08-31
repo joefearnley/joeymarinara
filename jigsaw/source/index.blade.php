@@ -2,9 +2,7 @@
 
 @section('body')
     <div class="w-full mb-6 text-center">
-        <div>
-            <img src="/assets/img/joey_marinara.png" alt="Joey Marinara">
-        </div>
+        <img class="m-auto" src="/assets/img/joey_marinara.png" alt="Joey Marinara">
     </div>
 
     @foreach ($posts->take(6) as $post)
@@ -18,7 +16,7 @@
             </p>
 
             <h2 class="text-3xl mt-0">
-                <a href="{{ $post->getUrl() }}" title="Read {{ $post->title }}" class="text-gray-900 font-extrabold">
+                <a href="{{ $post->getUrl() }}" title="Read {{ $post->title }}" class="font-extrabold">
                     {{ $post->title }}
                 </a>
             </h2>
