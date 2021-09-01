@@ -932,11 +932,11 @@ pre code {
   font-size: .925rem;
 }
 
-img {
+main img {
   margin: auto;
 }
 
-img:not(:last-child) {
+main p:last-child img {
   margin: 0;
 }
 
@@ -16477,6 +16477,7 @@ img:not(:last-child) {
 }
 
 .sticky{
+  position: -webkit-sticky;
   position: sticky;
 }
 
@@ -37732,6 +37733,7 @@ img:not(:last-child) {
   }
 
   .sm\:sticky{
+    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -58914,6 +58916,7 @@ img:not(:last-child) {
   }
 
   .md\:sticky{
+    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -80096,6 +80099,7 @@ img:not(:last-child) {
   }
 
   .lg\:sticky{
+    position: -webkit-sticky;
     position: sticky;
   }
 
@@ -101278,6 +101282,7 @@ img:not(:last-child) {
   }
 
   .xl\:sticky{
+    position: -webkit-sticky;
     position: sticky;
   }
 

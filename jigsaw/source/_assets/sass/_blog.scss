@@ -1,10 +1,13 @@
 
-// make all images centered
-img {
-    @apply .m-auto
-}
+main {
+    // make all images centered
+    img {
+        @apply .m-auto
+    }
 
-// except for the last pizza slice image thing
-img:not(:last-child) {
-    @apply .m-0
+
+    // except for the last pizza slice image thing
+    p:last-child  img {
+        @apply .m-0
+    }
 }
