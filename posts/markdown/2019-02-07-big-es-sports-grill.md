@@ -2,9 +2,12 @@
 extends: _layouts.post
 section: content
 title: Big E’s Sports Grill
-date: 2019-02-07
+date: 2018-12-22
 rating: 3
 ---
+
+It's getting to be that time of year again. With the holidays right around the corner partys are starting to pop up. 
+
 
 ![Big E’s Sports Grill](https://64.media.tumblr.com/62ba73132c38ea5d48ae6c7430de1c4c/bb78d60b4f88edfd-bd/s540x810/4a549cc3c41d2055d55da2a07e51818d3c7113fc.jpg)
 
